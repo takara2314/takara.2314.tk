@@ -12,7 +12,7 @@ const Nav = ({ route }: Props) => {
   const isPortrait = useMediaQuery({ query: '(orientation: portrait)' });
 
   return (
-    <nav className="rounded-2xl shadow-lg flex flex-row relative">
+    <nav className="bg-white rounded-2xl shadow-lg flex flex-row relative">
       <section className="w-full px-3 landscape:px-10 xl:px-7 lg:portrait:px-16 py-4 landscape:py-2 xl:landscape:py-4 flex flex-col xl:flex-row">
         <div className="relative">
           <CenterText>
@@ -42,7 +42,7 @@ const Nav = ({ route }: Props) => {
           }
         </div>
 
-        <ul className="w-full xl:w-[48rem] xl:ml-16 flex flex-row justify-between">
+        <ul className="w-full xl:w-[56rem] xl:ml-16 flex flex-row justify-between">
           <Item
             name="僕について"
             route="/"

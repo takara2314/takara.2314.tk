@@ -51,11 +51,11 @@ const MyApp = ({ Component, pageProps, router }: AppProps) => {
           type: 'website',
           locale: 'ja_JP',
           url,
-          description: '濱口　宝のウェブページです。学生であり開発者でもあります。'
+          description: '濱口　宝のウェブページです。'
         }}
       />
 
-      <header className="w-full p-3 fixed">
+      <header className="w-full p-3 fixed z-50">
         <Nav route={router.route} />
       </header>
 

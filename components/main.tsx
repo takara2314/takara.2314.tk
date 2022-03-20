@@ -27,7 +27,7 @@ const Main = ({ children, title, description }: Props) => {
           exit: { opacity: 0, x: 0, y: -100 },
         }}
         transition={{ type: 'linear' }}
-        className="text-lg px-7 xl:px-10 pt-44 xl:pt-32"
+        className="bg-[rgb(250,251,252)] min-h-[100vh] text-lg px-7 xl:px-10 pt-44 xl:pt-32 flex flex-col items-center"
       >
         {children}
       </motion.main>
