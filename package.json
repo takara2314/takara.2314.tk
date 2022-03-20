@@ -1,7 +1,16 @@
 {
   "name": "takara.2314.tk",
   "version": "0.1.0",
-  "private": true,
+  "author": "Takara Hamaguchi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/takara2314/takara.2314.tk/issues"
+  },
+  "homepage": "https://takara.2314.tk/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/takara2314/takara.2314.tk.git"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -9,15 +18,20 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "framer-motion": "^6.2.8",
     "next": "12.1.0",
+    "next-seo": "^5.1.0",
     "react": "17.0.2",
     "react-dom": "17.0.2"
   },
   "devDependencies": {
     "@types/node": "17.0.21",
     "@types/react": "17.0.41",
+    "autoprefixer": "^10.4.4",
     "eslint": "8.11.0",
     "eslint-config-next": "12.1.0",
+    "postcss": "^8.4.12",
+    "tailwindcss": "^3.0.23",
     "typescript": "4.6.2"
   }
 }

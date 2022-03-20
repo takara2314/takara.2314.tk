@@ -1,8 +1,51 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
+import Head from 'next/head';
+import type { AppProps } from 'next/app';
+import { useEffect } from 'react';
+import { DefaultSeo } from 'next-seo';
+import { AnimatePresence } from 'framer-motion';
+import '../styles/globals.css';
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
-}
+const MyApp = ({ Component, pageProps, router }: AppProps) => {
+  const url = `https://takara.2314.tk${router.route}`;
 
-export default MyApp
+  // Apply user color theme.
+  useEffect(() => {
+    if (
+      localStorage.theme === 'dark' ||
+      (!('theme' in localStorage) &&
+        window.matchMedia('(prefers-color-scheme: dark)').matches)
+    ) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, []);
+
+  return (
+    <>
+      <Head>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
+      <DefaultSeo
+        titleTemplate="%s - 濱口　宝"
+        openGraph={{
+          type: 'website',
+          locale: 'ja_JP',
+          url,
+          description: '濱口　宝のウェブページです。学生であり開発者でもあります。'
+        }}
+      />
+
+      <AnimatePresence
+        exitBeforeEnter
+        initial={false}
+        onExitComplete={() => window.scrollTo(0, 0)}
+      >
+        <Component {...pageProps} />
+      </AnimatePresence>
+    </>
+  );
+};
+
+export default MyApp;
