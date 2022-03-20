@@ -9,6 +9,19 @@ import '../styles/globals.css';
 const MyApp = ({ Component, pageProps, router }: AppProps) => {
   const url = `https://takara.2314.tk${router.route}`;
 
+  const preloadImages = [
+    '/nav-icon/about-active.svg',
+    '/nav-icon/about.svg',
+    '/nav-icon/contact-active.svg',
+    '/nav-icon/contact.svg',
+    '/nav-icon/favorites-active.svg',
+    '/nav-icon/favorites.svg',
+    '/nav-icon/skills-active.svg',
+    '/nav-icon/skills.svg',
+    '/nav-icon/works-active.svg',
+    '/nav-icon/works.svg'
+  ];
+
   // Apply user color theme.
   useEffect(() => {
     if (
@@ -25,7 +38,11 @@ const MyApp = ({ Component, pageProps, router }: AppProps) => {
   return (
     <>
       <Head>
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
         <link rel="icon" href="/favicon.svg" />
+        {preloadImages.map((imgUrl) =>
+          <link href={imgUrl} as="image" rel="preload" key={imgUrl} />
+        )}
       </Head>
 
       <DefaultSeo
@@ -38,7 +55,9 @@ const MyApp = ({ Component, pageProps, router }: AppProps) => {
         }}
       />
 
-      <Nav route={router.route} />
+      <header className="w-full p-3 fixed">
+        <Nav route={router.route} />
+      </header>
 
       <AnimatePresence
         exitBeforeEnter

@@ -8,7 +8,7 @@ interface Props {
 const CenterText = ({ children, className }: Props) => {
   return (
     <div className={
-      className === null
+      className === undefined
         ? "h-full flex flex-col justify-center"
         : `${className} h-full flex flex-col justify-center`
     }>

@@ -28,19 +28,19 @@ const Item = ({ name, route, activeStyle, now }: Props) => {
     <li>
       <Link href={route}>
         <a>
-          <div className="flex flex-row">
-            <div>
+          <div className="flex flex-col xl:flex-row">
+            <div className="flex flex-col m-auto inset-0">
               <CenterText>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={route !== now ? url : urlActive}
                   alt={name}
                   width="40rem"
-                  className="mr-2"
+                  className="text-center xl:mr-2"
                 />
               </CenterText>
             </div>
-            <div className={route !== now ? 'text-gray-500 font-medium' : activeStyle}>
+            <div className={route !== now ? 'text-gray-500 font-medium text-[0.7rem] xl:text-lg' : activeStyle}>
               <CenterText>
                 {name}
               </CenterText>
