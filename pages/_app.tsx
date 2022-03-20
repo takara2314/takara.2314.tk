@@ -3,6 +3,7 @@ import type { AppProps } from 'next/app';
 import { useEffect } from 'react';
 import { DefaultSeo } from 'next-seo';
 import { AnimatePresence } from 'framer-motion';
+import Nav from '../components/nav/nav';
 import '../styles/globals.css';
 
 const MyApp = ({ Component, pageProps, router }: AppProps) => {
@@ -24,7 +25,7 @@ const MyApp = ({ Component, pageProps, router }: AppProps) => {
   return (
     <>
       <Head>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.svg" />
       </Head>
 
       <DefaultSeo
@@ -36,6 +37,8 @@ const MyApp = ({ Component, pageProps, router }: AppProps) => {
           description: '濱口　宝のウェブページです。学生であり開発者でもあります。'
         }}
       />
+
+      <Nav route={router.route} />
 
       <AnimatePresence
         exitBeforeEnter

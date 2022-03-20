@@ -10,7 +10,7 @@ const Skills: NextPage = () => {
       title={title}
       description={description}
     >
-      <h1>スキル</h1>
+      <h1>できること</h1>
     </Main>
   );
 };

@@ -1,5 +1,4 @@
 import type { NextPage } from 'next';
-import Link from 'next/link';
 import Main from '../components/main';
 
 const title = '僕について';
@@ -11,10 +10,7 @@ const Home: NextPage = () => {
       title={title}
       description={description}
     >
-      <h1>濱口　宝のページ</h1>
-      <Link href="/skills">
-        <a>スキル</a>
-      </Link>
+      <h1>僕について</h1>
     </Main>
   );
 };
