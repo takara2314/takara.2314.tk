@@ -1,15 +1,17 @@
 import type { NextPage } from 'next';
 import { useEffect, useRef, useState } from "react";
 import { useMediaQuery } from 'react-responsive';
-import Typed from "typed.js";
+import Typed from 'typed.js';
 import Image from 'next/image';
 import Main from '../components/main';
+import BackCode from '../components/backcode/backcode';
 
 const title = '僕について';
 const description = '色々なことをやっている高専新4年生です！幼少期にPCに興味を持ち、情報系の学校に進学しました。';
 
 const Home: NextPage = () => {
   const [namePhase, setNamePhase] = useState<number>(0.0);
+  const [codeOpacity, setCodeOpacity] = useState<number>(1.0);
   const nameObj = useRef<HTMLSpanElement>(null);
 
   const isDesktopOrLaptop = useMediaQuery({ query: '(min-width: 1280px)' });
@@ -17,7 +19,7 @@ const Home: NextPage = () => {
 
   useEffect(() => {
     const typed = new Typed(nameObj.current!, {
-      strings: ["濱口　宝", "Takara Hamaguchi", "takara2314", "濱口　宝", "はまぐち　たから", "กิตติพศ ทาการะ", "濱口　宝", "ふぉくしーど", "タカラーン", "濱口　宝", "ハマグチ　タカラ", "たからん"],
+      strings: ['濱口　宝', 'Takara Hamaguchi', 'takara2314', '濱口　宝', 'はまぐち　たから', 'กิตติพศ ทาการะ', '濱口　宝', 'ふぉくしーど', 'タカラーン', '濱口　宝', 'ハマグチ　タカラ', 'たからん'],
       startDelay: 3000,
       typeSpeed: 60,
       backSpeed: 30,
@@ -25,7 +27,7 @@ const Home: NextPage = () => {
       smartBackspace: true,
       loop: true,
       showCursor: true,
-      cursorChar: "|"
+      cursorChar: '|'
     });
 
     return () => {
@@ -36,15 +38,19 @@ const Home: NextPage = () => {
   useEffect(() => {
     const handler = () => {
       if (isDesktopOrLaptop) {
-        if (window.pageYOffset / 10 >= 80 && isBigDesktopOrLaptop) {
-          setNamePhase(80);
-          return;
+        if (window.pageYOffset / 10 >= 80.0 && isBigDesktopOrLaptop) {
+          setNamePhase(80.0);
+        } else if (window.pageYOffset / 10 >= 50.0 && !isBigDesktopOrLaptop) {
+          setNamePhase(50.0);
+        } else {
+          setNamePhase(window.pageYOffset / 10);
         }
-        if (window.pageYOffset / 10 >= 50 && !isBigDesktopOrLaptop) {
-          setNamePhase(50);
-          return;
+
+        if (1 - window.pageYOffset / 800 < 0.0 && isBigDesktopOrLaptop) {
+          setCodeOpacity(0.0);
+        } else {
+          setCodeOpacity(1 - window.pageYOffset / 800);
         }
-        setNamePhase(window.pageYOffset / 10);
       }
     };
 
@@ -53,13 +59,15 @@ const Home: NextPage = () => {
     return () => {
       window.removeEventListener('scroll', handler);
     };
-  });
+  }, [isDesktopOrLaptop, isBigDesktopOrLaptop]);
 
   return (
     <Main
       title={title}
       description={description}
     >
+      <BackCode codeOpacity={codeOpacity} />
+
       <section
         className="text-center flex flex-col items-center xl:fixed xl:top-32"
         style={{
