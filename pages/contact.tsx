@@ -11,6 +11,9 @@ const Contact: NextPage = () => {
       description={description}
     >
       <h1>お問い合わせ</h1>
+      <p>
+        Twitter: @takara2314
+      </p>
     </Main>
   );
 };
