@@ -13,6 +13,7 @@ const Home: NextPage = () => {
   const nameObj = useRef<HTMLSpanElement>(null);
 
   const isDesktopOrLaptop = useMediaQuery({ query: '(min-width: 1280px)' });
+  const isBigDesktopOrLaptop = useMediaQuery({ query: '(min-width: 1536px)' });
 
   useEffect(() => {
     const typed = new Typed(nameObj.current!, {
@@ -34,9 +35,15 @@ const Home: NextPage = () => {
 
   useEffect(() => {
     const handler = () => {
-      if (window.pageYOffset / 10 >= 80) {
-        setNamePhase(80);
-      } else {
+      if (isDesktopOrLaptop) {
+        if (window.pageYOffset / 10 >= 80 && isBigDesktopOrLaptop) {
+          setNamePhase(80);
+          return;
+        }
+        if (window.pageYOffset / 10 >= 50 && !isBigDesktopOrLaptop) {
+          setNamePhase(50);
+          return;
+        }
         setNamePhase(window.pageYOffset / 10);
       }
     };
@@ -55,10 +62,10 @@ const Home: NextPage = () => {
     >
       <section
         className="text-center flex flex-col items-center xl:fixed xl:top-32"
-        style={isDesktopOrLaptop ? {
+        style={{
           left: '0rem',
           right: `${namePhase}rem`
-        } : {}}
+        }}
       >
         <div className="my-10 w-[70vw] xl:w-96 h-[70vw] xl:h-96 relative">
           <Image
@@ -82,7 +89,7 @@ const Home: NextPage = () => {
 
       <div className="mt-[10vh] xl:mt-[120vh]" />
 
-      <section className="bg-lime-200 xl:ml-[32rem] p-6 xl:p-10 w-full xl:w-[72rem] xl:min-h-[80vh] rounded-t-2xl">
+      <section className="bg-lime-200 xl:ml-[28rem] 2xl:ml-[32rem] p-6 xl:p-10 w-full xl:w-[48rem] 2xl:w-[72rem] xl:min-h-[80vh] rounded-t-2xl">
         <h1 className="text-lime-900 font-bold text-3xl mb-5">
           僕について
         </h1>
